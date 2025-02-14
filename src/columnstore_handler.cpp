@@ -94,7 +94,9 @@ TransactionId columnstore_index_delete_tuples(Relation rel, TM_IndexDeleteOp *de
 
 void columnstore_tuple_insert(Relation rel, TupleTableSlot *slot, CommandId cid, int options,
                               struct BulkInsertStateData *bistate) {
-    elog(ERROR, "columnstore_tuple_insert not implemented");
+    elog(INFO, "custom columnstore TAM called");
+    columnstore_pg_insert(rel, &slot, 1);
+    elog(INFO, "columnstore_tuple_insert not implemented");
 }
 
 void columnstore_tuple_insert_speculative(Relation rel, TupleTableSlot *slot, CommandId cid, int options,
